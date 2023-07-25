@@ -5,8 +5,6 @@ import com.google.zxing.MultiFormatReader
 import com.google.zxing.RGBLuminanceSource
 import com.google.zxing.common.HybridBinarizer
 import furhatos.flow.kotlin.*
-import furhatos.flow.kotlin.voice.Voice
-import furhatos.records.User
 import furhatos.skills.UserManager.current
 import furhatos.util.Gender
 import furhatos.util.Language
@@ -14,17 +12,15 @@ import org.zeromq.SocketType
 import org.zeromq.ZContext
 import java.awt.image.BufferedImage
 import java.io.ByteArrayInputStream
-import java.net.Authenticator
-import java.net.PasswordAuthentication
-import java.nio.file.Files
-import java.nio.file.Paths
 import javax.imageio.ImageIO
 import jcifs.CIFSContext
 import jcifs.config.PropertyConfiguration
 import jcifs.context.BaseContext
 import jcifs.smb.NtlmPasswordAuthenticator
 import jcifs.smb.SmbFile
-
+import java.io.File
+import furhatos.flow.kotlin.Furhat
+import furhatos.records.User
 
 
 //In der helper.kt sind alle benötigten Funktionen der Interaktion definiert.
@@ -432,3 +428,30 @@ fun GetDigitsTaxifahrernochmal(Benutzer: User, furhat: Furhat, field: String) {
 }
 
  */
+
+
+
+fun getDirection (directoryPath: String, username: String, password: String): SmbFile? {
+    //von hier...
+    val config = PropertyConfiguration(System.getProperties())
+    val context = BaseContext(config)
+    val credentials = NtlmPasswordAuthenticator(username, password)
+
+    val cifsContext: CIFSContext = context.withCredentials(credentials)
+
+    val ordner = SmbFile(directoryPath, cifsContext)
+    //bis hier...nur Anmeldung im Netzlaufwerk
+
+    //val inputStream = ordner.inputStream
+
+
+    /* val files = ordner.listFiles { file -> file.name.endsWith(".png") }
+    if (files.isNullOrEmpty()) {
+        return null
+    }
+
+    val latestFile = files.maxBy { file -> file.lastModified() }
+    */
+
+    return ordner
+}

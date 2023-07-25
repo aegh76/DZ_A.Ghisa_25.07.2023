@@ -4,7 +4,6 @@ import furhatos.app.demo02.nluAlt.Deutsch
 import furhatos.flow.kotlin.*
 import furhatos.flow.kotlin.voice.PollyVoice
 import furhatos.records.User
-import furhatos.util.Gender
 import furhatos.util.Language
 
 
@@ -12,7 +11,7 @@ import furhatos.util.Language
 var Benutzer: User? = null
 
 //Der State Greeting erbt von dem State Parent, dort ist das User-Handling definiert.
-val Greeting : State = state(Parent) {
+val Greetinglanguage : State = state(Parent) {
     onEntry {
 
         //Zu Beginn des States wird definiert, dass Furhat den aktuellen User weiterhin anschaut.
@@ -39,7 +38,7 @@ val Greeting : State = state(Parent) {
             turkishText = "Tamam Türkçe",
             sprache = Benutzer!!.get("sprache") as Language
         )
-        goto(Frage)
+        goto(Greeting)
     }
     onResponse<Englisch> {
         Benutzer = users.current
@@ -53,7 +52,7 @@ val Greeting : State = state(Parent) {
             turkishText = "Tamam Türkçe",
             sprache = Benutzer!!.get("sprache") as Language
         )
-        goto(Frage)
+        goto(Greeting)
     }
     onResponse<Deutsch> {
         Benutzer = users.current
@@ -67,7 +66,7 @@ val Greeting : State = state(Parent) {
             turkishText = "Tamam Türkçe",
             sprache = Benutzer!!.get("sprache") as Language
         )
-        goto(Frage)
+        goto(Greeting)
     }
 }
 

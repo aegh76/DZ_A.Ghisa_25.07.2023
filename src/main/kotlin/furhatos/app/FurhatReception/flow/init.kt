@@ -22,10 +22,6 @@ val Init : State = state {
         //dem Pfad: C:\Users\Benutzer\.furhat\logs protokolliert werden.
         dialogLogger.startSession()
 
-        furhat.setInputLanguage(Language.ENGLISH_US, Language.GERMAN, Language.TURKISH)
-        //Mit furhat.voice wird die NLU ausgewählt, die Furhat für die Interaktion verwenden soll.
-        //furhat.voice = PollyVoice.Hans()
-        furhat.setVoice(Language.GERMAN, Gender.MALE, false)
 
         //Mikroexpressionen sind kleine Gesichtsausdrücke, die kontinuierlich während eines Skill ablaufen,
         //so wirkt Furhat lebendiger. von "facialMovements = true" wird abgeraten, da Furhat das

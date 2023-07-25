@@ -11,12 +11,12 @@ import java.time.format.DateTimeFormatter
 import java.time.LocalDateTime
 
 
-val Frage : State = state(Parent) {
+val Greeting : State = state(Parent) {
     onEntry {
 
 
         /*furhat.ask (){
-            //Furhat stellt eine Frage und zieht während der Frage seine Brauen hoch, async = flase sorgt dafür,
+            //furhat stellt eine Frage und zieht während der Frage seine Brauen hoch, async = flase sorgt dafür,
             //dass der State erst nach Beendigung der Gesture weiterläuft
             +"Hallo Haben Sie für mich einen ${furhat.voice.emphasis("QR-Code")} oder wollen Sie mir die Patientennummer, Nummer für Nummer diktieren"
             furhat.gesture(Gestures.BrowRaise, async = false)
